@@ -69,7 +69,15 @@
                         <h4 id="intro-text" data-scroll-reveal="enter from the bottom after 0.4s">I'm passionate about creating clean, unique, elegant and functional websites. The designs you love. Designs that work. Read  the juicy bits <a href="#services" style="text-decoration:none">about me</a>, or find out why you should <a href="#works" style="text-decoration:none">hire me</a>.
 
                         </h4>
-                        <a data-scroll-reveal="enter from the bottom after 0.6s" href="#contact" class="btn set-bk-clr">Hire Me!</a>
+                        <a data-scroll-reveal="enter from the bottom after 0.6s" href="#contact" class="btn set-bk-clr">Contact Me!</a>
+                        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                            <input type="hidden" name="cmd" value="_s-xclick" />
+                            <input type="hidden" name="hosted_button_id" value="UZU7QCMT4A5QY" />
+                            <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+                            <img alt="" border="0" src="https://www.paypal.com/en_KE/i/scr/pixel.gif" width="1" height="1" />
+                        </form>
+
+
                     </div>
                 </div>
             </div>
@@ -400,6 +408,33 @@
     <!--FOOTER SECTION END  -->
     <!-- JAVASCRIPT FILES PLACED AT THE BOTTOM TO REDUCE THE LOADING TIME  -->
     <!-- CORE JQUERY  SCRIPTS -->
+
+<script src="https://www.paypal.com/sdk/js?client-id=sb&currency=USD" data-sdk-integration-source="button-factory"></script>
+<script>
+  paypal.Buttons({
+      style: {
+          shape: 'pill',
+          color: 'blue',
+          layout: 'vertical',
+          label: 'paypal',
+          
+      },
+      createOrder: function(data, actions) {
+          return actions.order.create({
+              purchase_units: [{
+                  amount: {
+                      value: '1'
+                  }
+              }]
+          });
+      },
+      onApprove: function(data, actions) {
+          return actions.order.capture().then(function(details) {
+              alert('Transaction completed by ' + details.payer.name.given_name + '!');
+          });
+      }
+  }).render('#paypal-button-container');
+</script>
     <script src="assets/js/jquery-1.11.1.js"></script>
     <!-- BOOTSTRAP SCRIPTS  -->
     <script src="assets/js/bootstrap.js"></script>
